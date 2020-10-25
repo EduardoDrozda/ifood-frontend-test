@@ -1,4 +1,4 @@
-import config from "../../config";
+import config from "../../config/enviroments";
 
 export default function useSpotifyAccountUrl(): string {
   const { spotifyClientId, spotifyAccountUrl, spotifyRedirectUrl } = config;

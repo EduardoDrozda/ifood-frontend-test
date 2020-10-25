@@ -1,43 +1,82 @@
-import styled from "styled-components";
-import { Toolbar } from "@material-ui/core";
+import {
+  Badge,
+  createStyles,
+  makeStyles,
+  Theme,
+  withStyles
+} from "@material-ui/core";
 
+export const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    toolbar: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      width: '90%',
+      margin: '0 auto',
+      [theme.breakpoints.down('md')]: {
+        width: '90%'
+      }
+    },
+    toolbarBrand: {
+      width: '140px',
+      marginBottom: '5px'
+    },
+    toolbarMenuIcon: {
+      fontSize: '2.1rem',
+      cursor: 'pointer'
+    },
+    avatarContainer: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      [theme.breakpoints.down('md')]: {
+        padding: '10px 0'
+      }
+    },
+    avatar: {
+      '&:hover': {
+        cursor: 'pointer'
+      },
+    },
+    avatarName: {
+      fontSize: '1rem',
+      marginRight: '10px',
+      [theme.breakpoints.down('sm')]: {
+        display: 'none'
+      }
+    }
+  }),
+);
 
-export const CustomToolbar = styled(Toolbar)`
-  display: flex;
-  justify-content: space-between;
-  width: 90%;
-  margin: 0 auto;
-
-  @media screen and (max-width: 990px) {
-    width: 95%;
-  }
-
-`;
-export const ToolbarBrand = styled.img`
-  width: 140px;
-  margin-bottom: 5px;
-`;
-
-export const ToolbarMenuIcon = styled.i`
-  font-size: 2.1em;
-  cursor: pointer;
-`;
-
-export const ToolbarAvatarContainer = styled.nav`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  @media screen and (max-width: 767px) {
-     padding: 10px 0;
-  }
-`;
-
-export const ToolbarAvatarName = styled.h1`
-  font-size: 16px;
-  margin-right: 10px;
-
-  @media screen and (max-width: 442px) {
-     display: none;
-  }
-`;
+export const StyledBadge = withStyles((theme: Theme) =>
+  createStyles({
+    badge: {
+      backgroundColor: '#44b700',
+      color: '#44b700',
+      boxShadow: `0 0 0 2px ${ theme.palette.background.paper }`,
+      bottom: 0,
+      top: 0,
+      '&::after': {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        borderRadius: '50%',
+        animation: '$ripple 1.2s infinite ease-in-out',
+        border: '1px solid currentColor',
+        content: '""',
+      },
+    },
+    '@keyframes ripple': {
+      '0%': {
+        transform: 'scale(.8)',
+        opacity: 1,
+      },
+      '100%': {
+        transform: 'scale(2.4)',
+        opacity: 0,
+      },
+    },
+  }),
+)(Badge);

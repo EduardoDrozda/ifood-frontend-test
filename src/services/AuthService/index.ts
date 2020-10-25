@@ -1,6 +1,6 @@
 import { UserToken } from "../../interfaces";
 import StorageService from "../StorageService";
-import config from "../../config";
+import config from "../../config/enviroments";
 import { AxiosRequestConfig, AxiosResponse } from "axios";
 import HttpService from "../HttpService";
 

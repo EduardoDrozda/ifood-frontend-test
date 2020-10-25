@@ -1,4 +1,4 @@
-import config from "../../config";
+import config from "../../config/enviroments";
 import AuthService from "../AuthService";
 import HttpService from "../HttpService";
 import { User } from "../../interfaces/User";

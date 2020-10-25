@@ -1,4 +1,4 @@
-import config from "../../config";
+import config from "../../config/enviroments";
 import HttpService from "../HttpService";
 import { Filter } from "../../interfaces/Filter";
 

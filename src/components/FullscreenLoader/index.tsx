@@ -1,6 +1,6 @@
-import React from "react";
-import { LoaderContainer } from "./styles";
 import { CircularProgress } from "@material-ui/core";
+import React from "react";
+import { useStyles } from "./styles";
 
 type LoaderProps = {
   showLoading: boolean;
@@ -8,22 +8,13 @@ type LoaderProps = {
 
 const FullscreenLoader: React.FC<LoaderProps> = ({ showLoading }) => {
 
-  const showLoader = () => {
-    if (showLoading) {
-      return (
-        <LoaderContainer>
-          <CircularProgress size={ 150 }/>
-        </LoaderContainer>
-      )
-    }
+  const classes = useStyles();
 
-    return (
-      <>
-      </>
-    )
-  }
-
-  return showLoader();
+  return showLoading
+    ? <div className={classes.container}>
+        <CircularProgress size={ 150 }/>
+      </div>
+    : <></>
 }
 
 export default FullscreenLoader;

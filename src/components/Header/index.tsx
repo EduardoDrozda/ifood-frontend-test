@@ -1,70 +1,10 @@
 import React, { memo, useCallback, useEffect, useState } from "react";
-import {
-  CustomToolbar,
-  ToolbarAvatarContainer,
-  ToolbarAvatarName,
-  ToolbarBrand,
-  ToolbarMenuIcon
-} from "./styles";
+import { StyledBadge, useStyles } from "./styles";
 import brand from '../../assets/img/svg/spotifood_logo_aside_white.svg';
-import { User } from "../../interfaces/User";
-import Badge from '@material-ui/core/Badge';
+
 import useAuthentication from "../../hooks/useAuthentication";
-import {
-  createStyles,
-  makeStyles,
-  Theme,
-  withStyles
-} from '@material-ui/core/styles';
-import { AppBar, Avatar, Menu, MenuItem } from "@material-ui/core";
-
-type HeaderProps = {
-  userInfo: User,
-  openSidebar: () => void;
-}
-
-const StyledBadge = withStyles((theme: Theme) =>
-  createStyles({
-    badge: {
-      backgroundColor: '#44b700',
-      color: '#44b700',
-      boxShadow: `0 0 0 2px ${ theme.palette.background.paper }`,
-      bottom: 0,
-      top: 0,
-      '&::after': {
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        borderRadius: '50%',
-        animation: '$ripple 1.2s infinite ease-in-out',
-        border: '1px solid currentColor',
-        content: '""',
-      },
-    },
-    '@keyframes ripple': {
-      '0%': {
-        transform: 'scale(.8)',
-        opacity: 1,
-      },
-      '100%': {
-        transform: 'scale(2.4)',
-        opacity: 0,
-      },
-    },
-  }),
-)(Badge);
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    avatar: {
-      '&:hover': {
-        cursor: 'pointer'
-      },
-    },
-  }),
-);
+import { AppBar, Avatar, Menu, MenuItem, Toolbar } from "@material-ui/core";
+import { HeaderProps } from "./type/header-props";
 
 const Header: React.FC<HeaderProps> = ({ userInfo, openSidebar }) => {
   const classes = useStyles();
@@ -94,14 +34,14 @@ const Header: React.FC<HeaderProps> = ({ userInfo, openSidebar }) => {
 
   return (
     <AppBar position="static">
-      <CustomToolbar>
+      <Toolbar className={classes.toolbar}>
         { showMenuIcon
-          ? (<ToolbarMenuIcon className="material-icons"
-                              onClick={ openSidebar }>menu</ToolbarMenuIcon>)
-          : (<ToolbarBrand src={ brand } alt='logo aside'/>)
+          ? (<i className={`${classes.toolbarMenuIcon} material-icons`}
+                onClick={ openSidebar }>menu</i>)
+          : (<img className={classes.toolbarBrand} src={ brand } alt='logo aside'/>)
         }
-        <ToolbarAvatarContainer>
-          <ToolbarAvatarName>{ userInfo.displayName }</ToolbarAvatarName>
+        <nav className={classes.avatarContainer}>
+          <h1 className={classes.avatarName}>{ userInfo.displayName }</h1>
           <StyledBadge
             overlap="circle"
             anchorOrigin={ {
@@ -127,8 +67,8 @@ const Header: React.FC<HeaderProps> = ({ userInfo, openSidebar }) => {
             <MenuItem
               onClick={ logout }>Sair</MenuItem>
           </Menu>
-        </ToolbarAvatarContainer>
-      </CustomToolbar>
+        </nav>
+      </Toolbar >
     </AppBar>
   );
 }
