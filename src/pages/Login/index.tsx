@@ -5,16 +5,14 @@ import {
 import spotifood_logo_with_name
   from '../../assets/img/svg/spotifood_logo_with_name.svg';
 import useSpotifyAccountUrl from "../../hooks/useSpotifyAccountUrl";
-import config from "../../config/enviroments";
 import { Box, Button, Link, Typography } from "@material-ui/core";
 
 const LoginPage: React.FC = () => {
   const classes = useStyles();
-  const spotifyAccountUrl = useSpotifyAccountUrl();
-  const { spotifySignupAccountUrl } = config;
+  const { spotifyAccountUrl, spotifyLoginUrl } = useSpotifyAccountUrl();
 
   const handleButtonLogin = (): void => {
-    window.location.href = spotifyAccountUrl;
+    window.location.href = spotifyLoginUrl!;
   }
 
   return (
@@ -43,7 +41,7 @@ const LoginPage: React.FC = () => {
         >
           Click here to sign in
         </Button>
-        <Link className={classes.signupLink} href={ spotifySignupAccountUrl } target="_blank">
+        <Link className={classes.signupLink} href={ spotifyAccountUrl } target="_blank">
           Don't have a Spotify account? Click here and sign up now
         </Link>
       </section>
