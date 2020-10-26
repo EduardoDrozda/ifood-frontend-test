@@ -1,9 +1,11 @@
 import React, { memo } from "react";
-import { PlaylistInputContainer } from "./styles";
+import { useStyles } from "./styles";
 import { usePlaylists } from "../../../../hooks/usePlaylists";
 import TextInput from "../../../../components/Inputs/TextInput";
+import { Box } from "@material-ui/core";
 
 const PlaylistInput: React.FC = () => {
+  const { inputContaner } = useStyles();
 
   const { setSearch } = usePlaylists();
 
@@ -13,13 +15,13 @@ const PlaylistInput: React.FC = () => {
   };
 
   return (
-    <PlaylistInputContainer>
+    <Box className={ inputContaner }>
       <TextInput
         name="Insert your favorite playlist"
         size="small"
         onChange={ handleChange }
       />
-    </PlaylistInputContainer>
+    </Box>
   );
 }
 

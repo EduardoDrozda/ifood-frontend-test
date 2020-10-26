@@ -1,9 +1,10 @@
-import styled from "styled-components";
+import { makeStyles, Theme } from "@material-ui/core";
 
-export const PlaylistInputContainer = styled.div`
-  width: 59vw;
-
-   @media screen and (max-width: 990px) {
-     width: 100%;
-   }
-`;
+export const useStyles = makeStyles((theme: Theme) => ({
+  inputContaner: {
+    width: '59vw',
+    [theme.breakpoints.down('md')]: {
+      width: '100%'
+    }
+  }
+}));

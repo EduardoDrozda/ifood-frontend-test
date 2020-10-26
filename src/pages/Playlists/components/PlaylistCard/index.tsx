@@ -1,8 +1,7 @@
+import { Box } from '@material-ui/core';
 import React, { memo } from 'react';
 import {
-  PlaylistCardContainer,
-  PlaylistCardDescription,
-  PlaylistCardImage
+  useStyles
 } from "./styles";
 
 type Props = {
@@ -13,18 +12,19 @@ type Props = {
 
 const PlaylistCard = ({ imageUrl, name, playlistUrl }: Props) => {
 
+  const classes = useStyles();
+
   const openPlaylist = () => {
     window.open(playlistUrl, '_blank');
   };
 
   return  (
-    <PlaylistCardContainer onClick={openPlaylist}
-    >
-      <PlaylistCardImage src={ imageUrl }/>
-      <PlaylistCardDescription>
+    <Box className={classes.cardContainer} onClick={openPlaylist}>
+      <img className={classes.cardImage} src={ imageUrl } alt='Playlist'/>
+      <Box className={classes.cardDescription} >
         { name }
-      </PlaylistCardDescription>
-    </PlaylistCardContainer>
+      </Box>
+    </Box >
   );
 }
 
