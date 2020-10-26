@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -45,4 +45,4 @@ const SelectInput = (
   )
 }
 
-export default memo(SelectInput);
+export default SelectInput;

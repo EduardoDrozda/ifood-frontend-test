@@ -3,8 +3,8 @@ import useUserInfo from "../../hooks/useUserInfo";
 import Header from "../Header";
 import PlayListFilters from "../Sidebar";
 import { Background } from "../../styles/Background";
-import { Content, SidebarMobileContainer } from "./styles";
-import { LinearProgress } from "@material-ui/core";
+import { useStyles } from "./styles";
+import { Box, LinearProgress } from "@material-ui/core";
 import useFilters from "../../hooks/useFilters";
 
 type Props = {
@@ -12,6 +12,7 @@ type Props = {
 }
 
 const Layout: React.FC<Props> = ({ children }) => {
+  const classes = useStyles();
   const userInfo = useUserInfo();
   const { isLoading } = useFilters();
 
@@ -37,13 +38,13 @@ const Layout: React.FC<Props> = ({ children }) => {
 
   return (
     <Background>
-      { isOpen && (<SidebarMobileContainer id="container"/>) }
+      { isOpen && (<Box className={classes.sidebarMobile} id="container"/>) }
       <Header userInfo={ userInfo! } openSidebar={ openSidebar }/>
       { isLoading && (<LinearProgress color="secondary"/>) }
-      <Content>
+      <Box className={classes.content}>
         <PlayListFilters isOpen={ isOpen }/>
         { children }
-      </Content>
+      </Box>
     </Background>
   );
 

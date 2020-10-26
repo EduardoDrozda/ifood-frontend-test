@@ -1,4 +1,4 @@
-import { CircularProgress } from "@material-ui/core";
+import { Box, CircularProgress } from "@material-ui/core";
 import React from "react";
 import { useStyles } from "./styles";
 
@@ -11,9 +11,9 @@ const FullscreenLoader: React.FC<LoaderProps> = ({ showLoading }) => {
   const classes = useStyles();
 
   return showLoading
-    ? <div className={classes.container}>
+    ? <Box className={classes.container}>
         <CircularProgress size={ 150 }/>
-      </div>
+      </Box>
     : <></>
 }
 

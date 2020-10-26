@@ -1,21 +1,21 @@
-import styled from "styled-components";
+import { makeStyles, Theme } from "@material-ui/core";
 
-export const Content = styled.div`
-  width: 85%;
-  margin: 30px auto;
-
-  display: flex;
-  justify-content: space-between;
-
-  @media screen and (max-width: 990px) {
-     width: 100%;
+export const useStyles = makeStyles((theme: Theme) => ({
+  content: {
+    width: '85%',
+    margin: '30px auto',
+    display: 'flex',
+    justifyContent: 'space-between',
+    [theme.breakpoints.down('md')]: {
+      width: '100%'
+    }
+  },
+  sidebarMobile: {
+    position: 'absolute',
+    width: '100vw',
+    height: '100vh',
+    zIndex: 999,
+    overflow: 'hidden'
   }
-`;
+}));
 
-export const SidebarMobileContainer = styled.div`
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  z-index: 999;
-  overflow: hidden
-`;

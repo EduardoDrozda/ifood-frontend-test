@@ -1,20 +1,19 @@
-import styled from "styled-components";
+import { makeStyles, Theme } from "@material-ui/core";
 
-export const PlaylistContainer = styled.div`
-  height: 70vh;
-  width: 75%;
-
-  @media screen and (max-width: 990px) {
-     margin: 0 auto;
+export const useStyles = makeStyles((theme: Theme) =>({
+  container: {
+    height: '70vh',
+    width: '75%',
+    [theme.breakpoints.down('md')]: {
+      margin: '0 auto'
+    },
+  },
+  cardListContainer: {
+    display: 'grid',
+    gridGap: '16px',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))',
+    [theme.breakpoints.down('md')]: {
+      gridGap: '24px'
+    },
   }
-`;
-
-export const PlaylistCardListContainer = styled.div`
-  display: grid;
-  grid-gap: 16px;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-
-  @media(min-width: 960px) {
-    grid-gap: 24px;
-  }
-`;
+}));

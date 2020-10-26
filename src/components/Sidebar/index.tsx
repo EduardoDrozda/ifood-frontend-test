@@ -1,25 +1,17 @@
 import React, { memo } from "react";
 import {
-  AdvancedSearchTitle,
   SidebarContainer,
-  SidebarLogo,
-  SidebarLogoContainer
+  useStyles
 } from "./styles";
 import useFilters from "../../hooks/useFilters";
-import { makeStyles } from "@material-ui/core/styles";
 import FilterInput from "./components/FilterInput";
 import brand from "../../assets/img/svg/spotifood_logo_aside_red.svg";
 import { usePlaylists } from "../../hooks/usePlaylists";
+import { Box, Typography } from "@material-ui/core";
 
 type Props = {
   isOpen: boolean;
 }
-
-const useStyles = makeStyles(() => ({
-  input: {
-    margin: '20px 0'
-  }
-}))
 
 const Sidebar: React.FC<Props> = ({ isOpen }) => {
 
@@ -50,7 +42,7 @@ const Sidebar: React.FC<Props> = ({ isOpen }) => {
     ];
 
     return filters.map((filter, index) => (
-      <div
+      <Box
         className={ classes.input }
         key={ index }
       >
@@ -58,18 +50,23 @@ const Sidebar: React.FC<Props> = ({ isOpen }) => {
           { ...filter }
           onChange={ (value) => handleChange(filter.id!, value) }
         />
-      </div>
+      </Box>
     ));
   }
 
   return (
     <SidebarContainer isOpen={ isOpen }>
       { isOpen && (
-        <SidebarLogoContainer>
-          <SidebarLogo src={ brand } alt='logo aside'/>
-        </SidebarLogoContainer>
+        <Box className={classes.logoContainer}>
+          <img className={classes.sidebarLogo} src={ brand } alt='logo aside'/>
+        </Box>
       ) }
-      <AdvancedSearchTitle>Advanced search</AdvancedSearchTitle>
+      <Typography
+        variant="h3"
+        className={classes.searchTitle}
+        >
+          Advanced search
+        </Typography>
       { buildFilters() }
     </SidebarContainer>
   );

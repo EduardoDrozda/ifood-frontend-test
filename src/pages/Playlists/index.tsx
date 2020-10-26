@@ -3,21 +3,22 @@ import Layout from "../../components/Layout";
 import PlaylistInput from "./components/PlaylistInput";
 import { usePlaylists } from "../../hooks/usePlaylists";
 import PlaylistList from "./components/PlaylistList";
-import { PlaylistCardListContainer, PlaylistContainer } from "./styles";
+import { useStyles } from "./styles";
+import { Box } from "@material-ui/core";
 
 const PlayListsPage: React.FC = () => {
-
+  const classes = useStyles();
   const { playlists } = usePlaylists();
 
   return (
     <Layout>
       <>
-        <PlaylistContainer>
+        <Box className={classes.container}>
           <PlaylistInput/>
-          <PlaylistCardListContainer>
+          <Box className={classes.cardListContainer}>
             <PlaylistList playlists={ playlists } />
-          </PlaylistCardListContainer>
-        </PlaylistContainer>
+          </Box>
+        </Box>
       </>
     </Layout>
   )

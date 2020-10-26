@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 import MaterialTextField from "@material-ui/core/TextField";
 import { Validation } from "../../../interfaces/Filter";
 
@@ -55,4 +55,4 @@ const TextInput = (
   );
 }
 
-export default memo(TextInput);
+export default TextInput;

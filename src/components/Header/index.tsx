@@ -3,10 +3,15 @@ import { StyledBadge, useStyles } from "./styles";
 import brand from '../../assets/img/svg/spotifood_logo_aside_white.svg';
 
 import useAuthentication from "../../hooks/useAuthentication";
-import { AppBar, Avatar, Menu, MenuItem, Toolbar } from "@material-ui/core";
-import { HeaderProps } from "./type/header-props";
+import { AppBar, Avatar, Menu, MenuItem, Toolbar, Typography } from "@material-ui/core";
+import { User } from "../../interfaces";
 
-const Header: React.FC<HeaderProps> = ({ userInfo, openSidebar }) => {
+export type Props = {
+  userInfo: User,
+  openSidebar: () => void;
+}
+
+const Header: React.FC<Props> = ({ userInfo, openSidebar }) => {
   const classes = useStyles();
 
   const { logout } = useAuthentication();
@@ -41,7 +46,7 @@ const Header: React.FC<HeaderProps> = ({ userInfo, openSidebar }) => {
           : (<img className={classes.toolbarBrand} src={ brand } alt='logo aside'/>)
         }
         <nav className={classes.avatarContainer}>
-          <h1 className={classes.avatarName}>{ userInfo.displayName }</h1>
+          <Typography variant="h3" className={classes.avatarName}>{ userInfo.displayName }</Typography>
           <StyledBadge
             overlap="circle"
             anchorOrigin={ {

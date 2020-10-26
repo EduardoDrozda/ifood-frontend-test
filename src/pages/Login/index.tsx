@@ -1,22 +1,15 @@
 import React from "react";
-import { Background } from "../../styles";
 import {
-  LoginButton,
-  LoginButtonContainer,
-  LoginContainer,
-  LoginLogo,
-  LoginLogoContainer,
-  LoginToContinue,
-  MessageBeforeLogin,
-  SignupLink
+  useStyles
 } from "./styles";
 import spotifood_logo_with_name
   from '../../assets/img/svg/spotifood_logo_with_name.svg';
 import useSpotifyAccountUrl from "../../hooks/useSpotifyAccountUrl";
 import config from "../../config/enviroments";
+import { Box, Button, Link, Typography } from "@material-ui/core";
 
 const LoginPage: React.FC = () => {
-
+  const classes = useStyles();
   const spotifyAccountUrl = useSpotifyAccountUrl();
   const { spotifySignupAccountUrl } = config;
 
@@ -25,31 +18,36 @@ const LoginPage: React.FC = () => {
   }
 
   return (
-    <Background>
-      <LoginContainer>
-        <LoginLogoContainer>
-          <LoginLogo src={ spotifood_logo_with_name } alt="logo Site"/>
-        </LoginLogoContainer>
-        <LoginButtonContainer>
-          <MessageBeforeLogin>Hello, we know you are hungry for music, but from
-            here you must login with your spotify account.</MessageBeforeLogin>
+    <Box className={classes.loginContainer}>
+      <section className={classes.logoContainer}>
+        <img
+          className={classes.loginLogo}
+          src={ spotifood_logo_with_name }
+          alt="logo Site"
+          />
+      </section>
+      <section className={classes.loginButtonContainer}>
+        <Typography variant="h2" className={classes.messageBeforeLogin}>
+          Hello, we know you are hungry for music, but from
+          here you must login with your spotify account.</Typography>
 
-          <LoginToContinue>Click on the link below to login.</LoginToContinue>
+        <Typography variant="h2" className={classes.loginToContinue}>
+          Click on the link below to login.</Typography>
 
-          <LoginButton
-            size="large"
-            variant="contained"
-            color="primary"
-            onClick={ handleButtonLogin }
-          >
-            Click here to sign in
-          </LoginButton>
-          <SignupLink href={ spotifySignupAccountUrl } target="_blank">
-            Don't have a Spotify account? Click here and sign up now
-          </SignupLink>
-        </LoginButtonContainer>
-      </LoginContainer>
-    </Background>
+        <Button
+          className={classes.loginButton}
+          size="large"
+          variant="contained"
+          color="primary"
+          onClick={ handleButtonLogin }
+        >
+          Click here to sign in
+        </Button>
+        <Link className={classes.signupLink} href={ spotifySignupAccountUrl } target="_blank">
+          Don't have a Spotify account? Click here and sign up now
+        </Link>
+      </section>
+    </Box>
   );
 }
 
