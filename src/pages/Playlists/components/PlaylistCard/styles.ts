@@ -22,7 +22,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
   cardDescription: {
     position: 'absolute',
     bottom: '9px',
-    height: '30px',
+    height: '40px',
+    padding: '15px',
     backgroundColor: 'rgba(255,255,255,0.5)',
     color: '#000',
     fontFamily: 'Roboto, sans-serif',

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Layout from "../../components/Layout";
 import PlaylistInput from "./components/PlaylistInput";
 import { usePlaylists } from "../../hooks/usePlaylists";
@@ -14,7 +14,7 @@ const PlayListsPage: React.FC = () => {
     <Layout>
       <>
         <Box className={classes.container}>
-          <PlaylistInput/>
+          <PlaylistInput />
           <Box className={classes.cardListContainer}>
             <PlaylistList playlists={ playlists } />
           </Box>
@@ -24,4 +24,4 @@ const PlayListsPage: React.FC = () => {
   )
 }
 
-export default PlayListsPage;
+export default memo(PlayListsPage);

@@ -24,6 +24,8 @@ const FilterProvider: React.FC = ({ children }) => {
     return await FilterService.getFilters();
   }, []);
 
+  const setLocaleCallBack = useCallback((locales) => setLocales(locales), [])
+
   useLayoutEffect(() => {
     const setFilters = async () => {
       const filters = await getFilters();
@@ -36,7 +38,7 @@ const FilterProvider: React.FC = ({ children }) => {
 
     setFilters()
       .catch(() => enqueueSnackbar('Outch! Sorry dude, it\'s not a possible load de filter. Try again'));
-  }, [enqueueSnackbar, getFilters])
+  }, [enqueueSnackbar, getFilters, setLocaleCallBack])
 
   return (
     <FilterContext.Provider value={ {
